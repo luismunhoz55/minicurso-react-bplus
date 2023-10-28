@@ -1,16 +1,31 @@
 import { Button, TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
+import api from "../../services/api";
 import { SignUpStyle } from "./styles";
 
 export default function SignUpComponent() {
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    if (data.senha !== data.confirmarSenha) {
+      alert("As senhas não conferem");
+      return;
+    }
+
+    try {
+      const response = await api.post("/users", data);
+      if (response.status === 201) {
+        alert(response.data.message);
+        reset();
+      }
+    } catch (e) {
+      alert("erro");
+    }
   };
 
   return (

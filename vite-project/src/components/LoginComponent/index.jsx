@@ -1,5 +1,8 @@
 import { TextField, Button } from "@mui/material";
-import { Form, useForm } from "react-hook-form";
+import { useContext } from "react";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 import { LoginStyle } from "./styles";
 
 export default function LoginComponent() {
@@ -9,8 +12,27 @@ export default function LoginComponent() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const { SignIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const onSubmit = async (data) => {
+    try {
+      const response = await SignIn(data.email, data.senha);
+
+      if (response.status === 200) {
+        navigate("/dashboard");
+      } else {
+        alert("Falha na autenticação");
+      }
+    } catch (error) {
+      return error;
+    }
+
+    if (response.status === 200) {
+      navigate("/dashboard");
+    } else if (!response.status) {
+      alert("Falha na autenticação");
+    }
   };
 
   return (

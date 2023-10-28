@@ -1,6 +1,7 @@
 import { Navigate, useRoutes } from "react-router-dom";
 import Login from "../pages/Login";
 import Home from "../pages";
+import { Dashboard } from "../pages/Dashboard";
 
 function Routes() {
   return useRoutes([
@@ -14,11 +15,7 @@ function Routes() {
     },
     {
       path: "/dashboard",
-      element: (
-        <>
-          <h1>Dashboard</h1>
-        </>
-      ),
+      element: <Dashboard />,
     },
     {
       path: "/404",
