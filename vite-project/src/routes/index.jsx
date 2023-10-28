@@ -1,22 +1,16 @@
 import { Navigate, useRoutes } from "react-router-dom";
+import Login from "../pages/Login";
+import Home from "../pages/Home";
 
 function Routes() {
   return useRoutes([
     {
       path: "/",
-      element: (
-        <>
-          <h1>Home</h1>
-        </>
-      ),
+      element: <Home />,
     },
     {
       path: "/login",
-      element: (
-        <>
-          <h1>Login</h1>
-        </>
-      ),
+      element: <Login />,
     },
     {
       path: "/dashboard",
