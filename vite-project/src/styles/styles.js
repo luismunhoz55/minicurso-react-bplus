@@ -49,10 +49,6 @@ export const DashboardContainer = styled.div`
   background-color: #fff;
   margin: auto;
 
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-
   max-width: 1000px;
   overflow: auto;
   min-height: 100vh;
